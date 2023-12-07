@@ -1,0 +1,40 @@
+<form [formGroup]="myForm">
+  <table>
+    <div formGroupName="sousGroupe1">
+    <tr>
+      <td>Apartement Number</td>
+      <td>
+        <input formControlName="apartnum" />
+        <div *ngIf="NumApart.invalid && NumApart.touched">
+          <div *ngIf="NumApart.errors['required']">champ obliga</div>
+          <div *ngIf="NumApart.errors['required']">le champ doit contenir des chiffres uniquement
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Floor Number</td>
+      <td>
+        <input formControlName="floorNum" />
+        <div [hidden]="NumFloor.valid || NumFloor.untouched">champ obliga</div>
+      </td>
+    </tr>
+    <tr>
+      <td>Surface</td>
+      <td><input formControlName="Surface" /></td>
+    </tr>
+</div>
+<div [hidden]="myForm.get('sousGroupe1').invalid">
+    <tr>
+        <td>SurfaceTerrace</td>
+        <td><input formControlName="SurfaceTerrace" />
+
+        </td>
+      </tr>
+    </div> 
+    <div> <tr>
+        <td><button type="submit" [disabled]= "myForm.invalid">Save</button></td>
+      </tr>
+    </div>
+  </table>
+</form>

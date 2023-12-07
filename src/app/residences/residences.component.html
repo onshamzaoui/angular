@@ -1,0 +1,37 @@
+<!-- Name -->
+Name: <input type="text" [value]="name" (keyup)="setName(x.value)" #x /> : {{ name }}
+<br />
+Recherche par Name (avec NgModel):
+<input type="text" [(ngModel)]="name2" (input)="filterResidencesByName()" />
+{{ name2 }}
+
+<!-- Residences List -->
+<ul>
+  <li *ngFor="let r of listResidences">
+    <div *ngIf="r.name.toLowerCase().includes(name2.toLowerCase()) || name2 == ''">
+      <!-- Interpolation -->
+      {{ r.id }} - {{ r.name }} <a [routerLink]="['apartments', r.id]">Détails</a>
+
+      <!-- Show Apartments Button and Display Apartments -->
+      <div>
+        <button (click)="getApartments(r.id)">Show Apartments</button>
+        Recherche par Surface (avec NgModel): 
+        Recherche par Surface (avec NgModel):
+        <input type="number" [(ngModel)]="surface" (input)="filterApartmentsBySurface()" /> {{ surface }}
+                <!-- Display Apartments -->
+        <ul *ngIf="selectedResidence && selectedResidence.id === r.id">
+          <li *ngFor="let a of list; else noApartments">
+            {{ a.id }} - {{ a.surface }}
+          </li>
+        </ul>
+
+        <!-- No Apartments Found Message -->
+        <ng-template #noApartments>
+          <p>No Apartment found</p>
+        </ng-template>
+      </div>
+    </div>
+  </li>
+</ul>
+<router-outlet></router-outlet>
+
