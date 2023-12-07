@@ -1,11 +1,20 @@
-<app-test [prop1]="title"></app-test>
+<app-test #test2 (prop3)="test($event)" [prop1]="title">
+</app-test>
+<div>
+    from parent:
+     {{test2.prop2}}
+</div>
+<br>
+
 <!---One way databinding : interpolation : TS ->HTML -->
 {{ title }}
+
 <!---One way databinding: event binding -HTML->TS-->
 <button (click)="f('a')">Save</button>
 
 <input value={{title}}> <br>
-<input value="title"> <br>
+<input value="title">
+ <br>
 
 <!--- One way databinding: Property binding: TS -> HTML-->
 <input [value]="title">

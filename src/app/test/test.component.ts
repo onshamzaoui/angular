@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-test',
@@ -9,6 +9,13 @@ export class TestComponent {
   //prop1 :propriete d'entree de ce composant
   @Input() prop1:string="";
   //prop2:propriete interne
-  prop2:string;
+  prop2:string="prop2";
+  @Output()prop3=new EventEmitter();
+  notif(){
+this.prop3.emit("success");
+  }
+  f(){
+    alert("je suis le fils")
+  }
 
 }
